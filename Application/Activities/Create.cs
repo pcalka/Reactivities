@@ -11,7 +11,6 @@ namespace Application.Activities
     {
         public class Command : IRequest
         {
-
             public Guid Id { get; set; }
             public string Title { get; set; }
             public string Description { get; set; }
@@ -31,7 +30,7 @@ namespace Application.Activities
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-               var activity = new Activity
+               Activity activity = new Activity
                {
                    Id = request.Id,
                    Title = request.Title,
@@ -42,7 +41,7 @@ namespace Application.Activities
                    Venue = request.Venue
                };
                _context.Activities.Add(activity);
-               var success = await _context.SaveChangesAsync() > 0;
+               bool success = await _context.SaveChangesAsync() > 0;
 
                if(success) return Unit.Value;
                throw new Exception("Problem saving changes.");
