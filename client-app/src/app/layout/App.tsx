@@ -22,6 +22,11 @@ const App = () => {
     setEditMode(true);
   };
 
+  const handkeOpenCreateForm = () => {
+    setSelectedActivity(null);
+    setEditMode(true);
+  }
+  
   useEffect(() => {
     axios
       .get<IActivity[]>("http://localhost:5000/api/activities")
