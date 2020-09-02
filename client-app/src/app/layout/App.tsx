@@ -23,11 +23,6 @@ const App = () => {
     setEditMode(true);
   };
 
-  const handkeOpenCreateForm = () => {
-    setSelectedActivity(null);
-    setEditMode(true);
-  }
-
   const handleCreateActivity = (activity : IActivity) => {
     setActivities([...activities, activity])
     setSelectedActivity(activity);
@@ -38,6 +33,10 @@ const App = () => {
     setActivities([...activities.filter(a => a.id !== activity.id), activity])
     setSelectedActivity(activity);
     setEditMode(false);
+  }
+
+  const handleDeleteActivity = (id: string) =>{
+    setActivities([...activities.filter(a => a.id !== id)])
   }
 
   useEffect(() => {
@@ -66,6 +65,7 @@ const App = () => {
           setSelectedActivity={setSelectedActivity}
           createActivity={handleCreateActivity}
           editActivity={handleEditActivity}
+          deleteActivity={handleDeleteActivity}
         />
       </Container>
     </Fragment>
